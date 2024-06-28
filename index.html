@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conta Nabbi</title>
+    <link rel="stylesheet" href="./style/main.css">
+    <link rel="icon" type="image/x-icon" href="./img/skull.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="input medievalsharp-regular">
+            <label for="">
+                <h6>Nome Pg: </h6>
+            </label>
+            <input type="text" id="nomePg">
+            <label for="">
+                <h6>Stamina Pg: </h6>
+            </label>
+            <input type="number" id="staminaPg">
+            <label for="">
+                <h6>Fatica Pg: </h6>
+            </label>
+            <input type="number" id="faticaPg">
+            <label for="">
+                <h6>Regen Stamina Pg: </h6>
+            </label>
+            <input type="number" id="regenStaminaPg">
+            <label for="">
+                <h6>Regen Fatica Pg: </h6>
+            </label>
+            <input type="number" id="regenFaticaPg">
+            <br />
+            <button class="salva" onclick="salvaInfo()">Salva e Inizia</button>
+        </div>
+        <div class="game hide">
+            <button onclick="toggleHideClass()">Cambia Info</button>
+            gioco
+        </div>
+
+    </div>
+
+
+    <script src="./scripts/main.js"></script>
+</body>
+
+</html>
