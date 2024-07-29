@@ -107,6 +107,103 @@
 
     </div>
 
+    <div class="container medievalsharp-regular flip-card">
+        <div class="flip-card-inner">
+
+       
+        <div class="input medievalsharp-regular flip-card-front">
+            <label for="">
+                <h6>Nome Pg: </h6>
+            </label>
+            <input type="text" id="nomePg">
+            <label for="">
+                <h6>Stamina Pg: </h6>
+            </label>
+            <input type="number" id="staminaPg">
+            <label for="">
+                <h6>Stamina Pg Attuale: </h6>
+            </label>
+            <input type="number" id="staminaPgAttuale" placeholder="Opzionale">
+            <label for="">
+                <h6>Fatica Pg: </h6>
+            </label>
+            <input type="number" id="faticaPg">
+            <label for="">
+                <h6>Fatica Pg Attuale: </h6>
+            </label>
+            <input type="number" id="faticaPgAttuale" placeholder="Opzionale">
+            <label for="">
+                <h6>Regen Stamina Pg: </h6>
+            </label>
+            <input type="number" id="regenStaminaPg">
+            <label for="">
+                <h6>Regen Fatica Pg: </h6>
+            </label>
+            <input type="number" id="regenFaticaPg">
+            <br />
+            <button class="salva" onclick="salvaInfo()">Salva e Inizia</button>
+        </div>
+        <div class="game flip-card-back">
+            <button onclick="toggleHideClass()">Cambia Info</button>
+            <div class="card__pg">
+                <h6>Nome Pg: <span id="nomePgString"></span></h6>
+                <div class="split">
+                    <h6>Stamina Pg: <span id="staminaPgStringNow"></span>/<span id="staminaPgStringMax"></span>Max</h6>
+                    <h6>Fatica Pg: <span id="faticaPgStringNow"></span>/<span id="faticaPgStringMax"></span>Max</h6>
+                </div>
+            </div>
+            <div class="button_pg">
+                <h6>Scegli il peso dell'arma:</h6>
+                <div class="tipo_arma row">
+                    <div class="split">
+                        <input type="radio" id="leggera" name="fav_language" value=0>
+                        <label for="leggera">
+                            <h6>Leggera</h6>
+                        </label>
+                    </div>
+                    <div class="split">
+                        <input type="radio" id="pesante" name="fav_language" value=1>
+                        <label for="pesante">
+                            <h6>Pesante</h6>
+                        </label>
+                    </div>
+                </div>
+                <div class="tipo_arma row">
+                    <div class="split">
+                        <input type="radio" id="balLeg" name="fav_language" value=2>
+                        <label for="balLeg">
+                            <h6>Balestra Leggera</h6>
+                        </label>
+                    </div>
+                    <div class="split">
+                        <input type="radio" id="balPes" name="fav_language" value=3>
+                        <label for="balPes">
+                            <h6>Balestra Pesante</h6>
+                        </label>
+                    </div>
+                </div>
+                <div class="display__button">
+                    <button>Inizio Turno/ Reset Azioni Difensive</button>
+                    <button onclick="attacco()">Attacco</button>
+                    <button>Abilità Arma Attiva</button>
+                    <div class="row">
+                        <button>Azione Difensiva</button>
+                        <h6>5 Stamina</h6>
+                    </div>
+                    <div class="row">
+                        <button>Fine Turno</button>
+                        <h6>+10S/+1F</h6>
+                    </div>
+                    <div class="row">
+                        <button>Fine Turno Senza Agire</button>
+                        <h6>+15S/+2F</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
 
     <script src="./scripts/main.js"></script>
 </body>

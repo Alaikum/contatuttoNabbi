@@ -38,6 +38,8 @@ function toggleHideClass() {
     var input = document.querySelector(".input");
     var game = document.querySelector(".game");
     takeInfo();
+    const flipCardInner = document.querySelector('.flip-card-inner');
+    flipCardInner.classList.toggle('flip');
 
     if (input.classList.contains("hide")) {
         input.classList.remove("hide");
