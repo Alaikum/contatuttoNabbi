@@ -19,7 +19,7 @@
   padding: 1rem;
 }
 
-.input {
+.input, .game {
   text-align: center;
 }
 
@@ -33,4 +33,33 @@
 
 .hide{
     display: none;
+}
+
+.card__pg{
+  padding-top: 1rem;
+}
+
+.split{
+  padding-top: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+}
+span{
+  color: darkred;
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.display__button{
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }

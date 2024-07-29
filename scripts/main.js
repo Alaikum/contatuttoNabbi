@@ -1,5 +1,18 @@
 console.log("contatutto per nabbi");
 
+// Selettori degli elementi
+var nomePg = document.querySelector("#nomePg");
+var nomePgString = document.querySelector("#nomePgString");
+var staminaPg = document.querySelector("#staminaPg");
+var staminaPgAttuale = document.querySelector("#staminaPgAttuale");
+var staminaPgStringMax = document.querySelector("#staminaPgStringMax");
+var faticaPg = document.querySelector("#faticaPg");
+var faticaPgAttuale = document.querySelector("#faticaPgAttuale");
+var faticaPgStringMax = document.querySelector("#faticaPgStringMax");
+var regenStaminaPg = document.querySelector("#regenStaminaPg");
+var regenFaticaPg = document.querySelector("#regenFaticaPg");
+takeInfo()
+
 function removeErrorClass(...elements) {
     elements.forEach(element => {
         if (element.classList.contains("error")) {
@@ -24,6 +37,7 @@ function hasNoErrorClass(...elements) {
 function toggleHideClass() {
     var input = document.querySelector(".input");
     var game = document.querySelector(".game");
+    takeInfo();
 
     if (input.classList.contains("hide")) {
         input.classList.remove("hide");
@@ -35,15 +49,8 @@ function toggleHideClass() {
 }
 
 function salvaInfo() {
-    // Selettori degli elementi
-    var nomePg = document.querySelector("#nomePg");
-    var staminaPg = document.querySelector("#staminaPg");
-    var faticaPg = document.querySelector("#faticaPg");
-    var regenStaminaPg = document.querySelector("#regenStaminaPg");
-    var regenFaticaPg = document.querySelector("#regenFaticaPg");
-
     // Rimuovi la classe "error" dagli elementi
-    removeErrorClass( nomePg, staminaPg, faticaPg, regenStaminaPg, regenFaticaPg);
+    removeErrorClass(nomePg, staminaPg, faticaPg, regenStaminaPg, regenFaticaPg);
 
     // Ottieni i valori o aggiungi la classe "error" se il valore è vuoto
     var nomePgValue = getValueOrError(nomePg);
@@ -67,7 +74,9 @@ function salvaInfo() {
         // Salva i valori nel local storage
         localStorage.setItem('nomePg', nomePgValue);
         localStorage.setItem('staminaPg', staminaPgValue);
+        localStorage.setItem('staminaPgNow', staminaPgAttuale.value ? staminaPgAttuale.value : staminaPgValue);
         localStorage.setItem('faticaPg', faticaPgValue);
+        localStorage.setItem('faticaPgNow', faticaPgAttuale.value ? faticaPgAttuale.value : faticaPgValue);
         localStorage.setItem('regenStaminaPg', regenStaminaPgValue);
         localStorage.setItem('regenFaticaPg', regenFaticaPgValue);
 
@@ -75,5 +84,61 @@ function salvaInfo() {
         toggleHideClass();
     } else {
         console.log("Alcuni campi contengono errori. Correggi i campi e riprova.");
+    }
+}
+
+
+//evito le ripetizioni di codice
+function updateValue(element, storageKey, property = 'value') {
+    const value = localStorage.getItem(storageKey);
+    element[property] = value;
+}
+
+function takeInfo() {
+    updateValue(nomePg, 'nomePg');
+    updateValue(nomePgString, 'nomePg', 'innerHTML');
+    updateValue(staminaPg, 'staminaPg');
+    updateValue(staminaPgStringMax, 'staminaPg', 'innerHTML');
+    updateValue(staminaPgAttuale, 'staminaPgNow');
+    updateValue(staminaPgStringNow, 'staminaPgNow', 'innerHTML');
+    updateValue(faticaPg, 'faticaPg');
+    updateValue(faticaPgStringMax, 'faticaPg', 'innerHTML');
+    updateValue(faticaPgAttuale, 'faticaPgNow');
+    updateValue(faticaPgStringNow, 'faticaPgNow', 'innerHTML');
+    regenStaminaPg.value = localStorage.getItem('regenStaminaPg');
+    regenFaticaPg.value = localStorage.getItem('regenFaticaPg');
+}
+
+function attacco() {
+    const radioToSelect = document.querySelectorAll(`input[name="fav_language"]`);
+    var valoreAttacco = null;
+    const costiStamina = {
+        0: {
+            stamina: 10,
+            fatica: 1
+        },
+        1: {
+            stamina: 15,
+            fatica: 3
+        },
+        2: {
+            stamina: 5,
+            fatica: 1
+        },
+        0: {
+            stamina: 8,
+            fatica: 2
+        }
+    }
+    radioToSelect.forEach(element => {
+        if (element.checked) {
+            valoreAttacco = element.value;
+        }
+    });
+    if (valoreAttacco == null) {
+        alert("Scegli l'arma");
+        return;
+    } else {
+
     }
 }
