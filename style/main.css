@@ -2,8 +2,47 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
   background-color: bisque;
   color: black;
+}
+button, input{
+  color: currentColor;
+}
+
+#gear {
+  position: fixed;
+  top: 10px; /* Distanza dall'alto */
+  right: 10px; /* Distanza dalla destra */
+  background-color: lightblue; /* Colore di sfondo per visibilità */
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 8px;
+  border: 1px solid #000;
+  z-index: 999;
+}
+
+.impostazioni {
+  position: absolute;
+  top: 0px; /* Distanza dall'alto */
+  right: 0px; /* Distanza dalla destra */
+  left: 0px;
+  background-color: gray;
+  padding: 8px;
+  border: 1px solid #000;
+  z-index: 9;
+  text-align: center;
+}
+
+.nascosto {
+  display: none;
+}
+
+.impostazioni > *,
+.impostazioni > * > * {
+  background-color: gray;
 }
 
 .medievalsharp-regular {
@@ -20,51 +59,51 @@
   padding: 1rem;
 }
 
-.input, .game {
+.input,
+.game {
   text-align: center;
 }
 
-.salva{
-    margin-top: 12.22px;
+.salva {
+  margin-top: 12.22px;
 }
 
-.error{
-    border: 3px dashed red;
+.error {
+  border: 3px dashed red;
 }
 
-.hide{
-    display: none;
+.hide {
+  display: none;
 }
 
-.card__pg{
+.card__pg {
   padding-top: 1rem;
 }
 
-.split{
+.split {
   padding-top: 0.5rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 0.5rem;
 }
-span{
+span {
   color: darkred;
 }
 
-.row{
+.row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
 }
 
-.display__button{
+.display__button {
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
 }
-
 
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
@@ -93,7 +132,8 @@ span{
   transform: rotateY(180deg);
 }
 /* Position the front and back side */
-.flip-card-front, .flip-card-back {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -104,7 +144,7 @@ span{
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
   /* background-color: #bbb; */
-  color: black;
+  /* color: black; */
 }
 
 /* Style the back side */

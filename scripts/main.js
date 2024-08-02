@@ -1,6 +1,11 @@
 console.log("contatutto per nabbi");
 
 // Selettori degli elementi
+var showImpostazioni = document.querySelector(".impostazioni");
+var cambiaColorValue = document.querySelector("#colorText");
+var cambiaBgValue = document.querySelector("#colorBg");
+var flipCardInner = document.querySelector('.flip-card-inner');
+var body= document.querySelector('body');
 var nomePg = document.querySelector("#nomePg");
 var nomePgString = document.querySelector("#nomePgString");
 var staminaPg = document.querySelector("#staminaPg");
@@ -47,6 +52,7 @@ const costiStamina = {
 };
 takeInfo()
 
+
 function removeErrorClass(...elements) {
     elements.forEach(element => {
         if (element.classList.contains("error")) {
@@ -72,7 +78,7 @@ function toggleHideClass() {
     var input = document.querySelector(".input");
     var game = document.querySelector(".game");
     takeInfo();
-    const flipCardInner = document.querySelector('.flip-card-inner');
+    
     flipCardInner.classList.toggle('flip');
 
     if (input.classList.contains("hide")) {
@@ -213,4 +219,20 @@ function fineTurno(relax) {
         saveLocal(y,takeLocal('faticaPg'))
     }
     takeInfo()
+}
+
+function impostazioni(){
+    console.log('impostazioni')
+    showImpostazioni.classList.toggle('nascosto');
+
+}
+
+function cambiaColor() {
+    console.log('cambiaColor', cambiaColorValue.value)
+    body.style.color= cambiaColorValue.value
+    
+}
+function cambiaBg() {
+    console.log('cambiaBg', cambiaBgValue.value)
+    body.style.backgroundColor= cambiaBgValue.value
 }
