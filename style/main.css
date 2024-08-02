@@ -15,7 +15,7 @@ button, input{
 #gear {
   position: fixed;
   top: 10px; /* Distanza dall'alto */
-  right: 10px; /* Distanza dalla destra */
+  right: 10%; /* Distanza dalla destra */
   background-color: lightblue; /* Colore di sfondo per visibilità */
   border-radius: 10px;
   padding: 8px;
