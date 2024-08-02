@@ -11,6 +11,40 @@ var faticaPgAttuale = document.querySelector("#faticaPgAttuale");
 var faticaPgStringMax = document.querySelector("#faticaPgStringMax");
 var regenStaminaPg = document.querySelector("#regenStaminaPg");
 var regenFaticaPg = document.querySelector("#regenFaticaPg");
+var azioneDifString = document.querySelector("#azioneDif");
+var regenStaString = document.querySelector("#regenSta");
+var regenFatString = document.querySelector("#regenFat");
+var regenStaRelaxString = document.querySelector("#regenStaRelax");
+var regenFatRelaxString = document.querySelector("#regenFatRelax");
+let x = "staminaPgNow"
+let y = "faticaPgNow"
+let z = "azioniDifensivaCompiute"
+const costiStamina = {
+    0: {
+        staminaAttacco: 10,
+        faticaAttacco: 1,
+        staminaSkills: 2,
+        faticaSkills: 1
+    },
+    1: {
+        staminaAttacco: 15,
+        faticaAttacco: 3,
+        staminaSkills: 4,
+        faticaSkills: 2
+    },
+    2: {
+        staminaAttacco: 5,
+        faticaAttacco: 1,
+        staminaSkills: 1,
+        faticaSkills: 1
+    },
+    3: {
+        staminaAttacco: 8,
+        faticaAttacco: 2,
+        staminaSkills: 2,
+        faticaSkills: 1
+    }
+};
 takeInfo()
 
 function removeErrorClass(...elements) {
@@ -58,19 +92,15 @@ function salvaInfo() {
     var nomePgValue = getValueOrError(nomePg);
     var staminaPgValue = getValueOrError(staminaPg);
     var faticaPgValue = getValueOrError(faticaPg);
-    var regenStaminaPgValue = getValueOrError(regenStaminaPg);
-    var regenFaticaPgValue = getValueOrError(regenFaticaPg);
 
     // Controlla se nessuno degli elementi ha la classe "error"
-    if (hasNoErrorClass(nomePg, staminaPg, faticaPg, regenStaminaPg, regenFaticaPg)) {
+    if (hasNoErrorClass(nomePg, staminaPg, faticaPg)) {
         // Procedi con la logica se nessun elemento ha la classe "error"
         console.log("Tutti i valori sono validi:");
         console.log({
             nomePgValue,
             staminaPgValue,
-            faticaPgValue,
-            regenStaminaPgValue,
-            regenFaticaPgValue
+            faticaPgValue
         });
 
         // Salva i valori nel local storage
@@ -79,8 +109,8 @@ function salvaInfo() {
         localStorage.setItem('staminaPgNow', staminaPgAttuale.value ? staminaPgAttuale.value : staminaPgValue);
         localStorage.setItem('faticaPg', faticaPgValue);
         localStorage.setItem('faticaPgNow', faticaPgAttuale.value ? faticaPgAttuale.value : faticaPgValue);
-        localStorage.setItem('regenStaminaPg', regenStaminaPgValue);
-        localStorage.setItem('regenFaticaPg', regenFaticaPgValue);
+        localStorage.setItem('regenStaminaPg', regenStaminaPg.value ? regenStaminaPg.value : 10);
+        localStorage.setItem('regenFaticaPg', regenFaticaPg.value ? regenFaticaPg.value : 1);
 
         console.log("Valori salvati nel local storage.");
         toggleHideClass();
@@ -109,29 +139,30 @@ function takeInfo() {
     updateValue(faticaPgStringNow, 'faticaPgNow', 'innerHTML');
     regenStaminaPg.value = localStorage.getItem('regenStaminaPg');
     regenFaticaPg.value = localStorage.getItem('regenFaticaPg');
+    if (!takeLocal(z)) {
+        saveLocal(z, 0)
+    }
+    azioneDifString.innerHTML = (parseInt(takeLocal(z)) + 1) * 5;
+    regenStaString.innerHTML = takeLocal('regenStaminaPg');
+    regenStaRelaxString.innerHTML = parseInt(takeLocal('regenStaminaPg')) + 5;
+    regenFatString.innerHTML = takeLocal('regenFaticaPg');
+    regenFatRelaxString.innerHTML = parseInt(takeLocal('regenFaticaPg')) + 1;
 }
 
-function attacco() {
+function takeLocal(local) {
+    return localStorage.getItem(local);
+}
+function saveLocal(local, value) {
+    localStorage.setItem(local, value);
+}
+
+
+
+function attacco(s) {
+
     const radioToSelect = document.querySelectorAll(`input[name="fav_language"]`);
     var valoreAttacco = null;
-    const costiStamina = {
-        0: {
-            stamina: 10,
-            fatica: 1
-        },
-        1: {
-            stamina: 15,
-            fatica: 3
-        },
-        2: {
-            stamina: 5,
-            fatica: 1
-        },
-        0: {
-            stamina: 8,
-            fatica: 2
-        }
-    }
+
     radioToSelect.forEach(element => {
         if (element.checked) {
             valoreAttacco = element.value;
@@ -141,6 +172,45 @@ function attacco() {
         alert("Scegli l'arma");
         return;
     } else {
-
+        console.log(costiStamina[valoreAttacco]);
+        let attaccoSkillStama, attaccoSkillFatica;
+        if (s === 'attacco') {
+            console.log('attacco');
+            attaccoSkillStama = costiStamina[valoreAttacco].staminaAttacco;
+            attaccoSkillFatica = costiStamina[valoreAttacco].faticaAttacco;
+        } else if (s === 'skills') {
+            console.log('skills');
+            attaccoSkillStama = costiStamina[valoreAttacco].staminaSkills;
+            attaccoSkillFatica = costiStamina[valoreAttacco].faticaSkills;
+        } else {
+            return;
+        }
+        saveLocal(x, (takeLocal(x) - attaccoSkillStama))
+        saveLocal(y, (takeLocal(y) - attaccoSkillFatica))
+        takeInfo()
     }
+}
+
+function azioneDifensiva() {
+    saveLocal(z, (parseInt(takeLocal(z)) + 1))
+    saveLocal(x, (takeLocal(x) - (takeLocal(z) * 5)))
+    takeInfo()
+}
+
+function inizioTurnoResetAzioniDifensive() {
+    saveLocal(z, 0);
+    takeInfo();
+}
+
+function fineTurno(relax) {
+    console.log("relax: " + relax);
+    saveLocal(x, (parseInt(takeLocal(x)) + parseInt(takeLocal('regenStaminaPg')) + (relax ? 5 : 0)));
+    saveLocal(y, (parseInt(takeLocal(y)) + parseInt(takeLocal('regenFaticaPg')) + (relax ? 1 : 0)));
+    if (parseInt(takeLocal(x))> parseInt(takeLocal('staminaPg'))) {
+        saveLocal(x,takeLocal('staminaPg'))
+    }
+    if (parseInt(takeLocal(y))> parseInt(takeLocal('faticaPg'))) {
+        saveLocal(y,takeLocal('faticaPg'))
+    }
+    takeInfo()
 }

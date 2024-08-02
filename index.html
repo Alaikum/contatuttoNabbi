@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="container medievalsharp-regular">
+    <!-- <div class="container medievalsharp-regular">
         <div class="input medievalsharp-regular">
             <label for="">
                 <h6>Nome Pg: </h6>
@@ -105,7 +105,7 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
     <div class="container medievalsharp-regular flip-card">
         <div class="flip-card-inner">
@@ -135,15 +135,15 @@
             <label for="">
                 <h6>Regen Stamina Pg: </h6>
             </label>
-            <input type="number" id="regenStaminaPg">
+            <input type="number" id="regenStaminaPg" placeholder="Opzionale">
             <label for="">
                 <h6>Regen Fatica Pg: </h6>
             </label>
-            <input type="number" id="regenFaticaPg">
+            <input type="number" id="regenFaticaPg" placeholder="Opzionale">
             <br />
             <button class="salva" onclick="salvaInfo()">Salva e Inizia</button>
         </div>
-        <div class="game flip-card-back">
+        <div class="game medievalsharp-regular flip-card-back">
             <button onclick="toggleHideClass()">Cambia Info</button>
             <div class="card__pg">
                 <h6>Nome Pg: <span id="nomePgString"></span></h6>
@@ -183,20 +183,20 @@
                     </div>
                 </div>
                 <div class="display__button">
-                    <button>Inizio Turno/ Reset Azioni Difensive</button>
-                    <button onclick="attacco()">Attacco</button>
-                    <button>Abilità Arma Attiva</button>
+                    <button onclick="inizioTurnoResetAzioniDifensive()">Inizio Turno/ Reset Azioni Difensive</button>
+                    <button onclick="attacco('attacco')">Attacco</button>
+                    <button onclick="attacco('skills')">Abilità Arma Attiva</button>
                     <div class="row">
-                        <button>Azione Difensiva</button>
-                        <h6>5 Stamina</h6>
+                        <button onclick="azioneDifensiva()">Azione Difensiva</button>
+                        <h6>- <span id="azioneDif">5</span> Stamina</h6>
                     </div>
                     <div class="row">
-                        <button>Fine Turno</button>
-                        <h6>+10S/+1F</h6>
+                        <button onclick="fineTurno(false)">Fine Turno</button>
+                        <h6>+<span id="regenSta">10</span>S/+<span id="regenFat">1</span>F</h6>
                     </div>
                     <div class="row">
-                        <button>Fine Turno Senza Agire</button>
-                        <h6>+15S/+2F</h6>
+                        <button onclick="fineTurno(true)">Fine Turno Senza Agire</button>
+                        <h6>+<span id="regenStaRelax">15</span>S/+<span id="regenFatRelax">2</span>F</h6>
                     </div>
                 </div>
             </div>
